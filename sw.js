@@ -29,4 +29,11 @@ self.addEventListener('activate', (event) => {
 //Evento fetch para descargar archivos estáticos
 self.addEventListener('fetch', (event) => {
     console.log('Fetch', event);
+
+    event.respondWith(
+        caches.match(event.request)
+        .then(respuestaCache => {
+            return respuestaCache
+        })
+    );
 });
